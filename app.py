@@ -10,7 +10,10 @@ import tkinter as tk
 from datetime import date
 from tkinter import filedialog, messagebox, ttk
 
-import pymupdf
+# pymupdf tự nạp "pymupdf.layout" (AI phân tích bố cục, cần onnxruntime + file model) nếu có cài.
+# Tool không dùng tới, và trong exe thiếu file model nên sẽ lỗi khi khởi động -> chặn hẳn.
+sys.modules["pymupdf.layout"] = None
+import pymupdf  # noqa: E402
 
 import settings
 from docinfo import guess_month, read_week

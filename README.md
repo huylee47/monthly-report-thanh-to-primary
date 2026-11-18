@@ -56,6 +56,8 @@ trong mẫu tên file, `{thang}` được thay bằng số tháng).
   file tuần đầu làm bản gốc → nối báo giảng các tuần sau vào section ngang → nối bài dạy vào cuối →
   chèn trang bìa và bảng chữ ký từ `template.docx` → thay các placeholder `{{...}}` → lưu `.docx`/xuất `.pdf`.
   Số thứ tự tự động của các tuần sau được "đóng băng" thành chữ để không bị đánh số nối tiếp.
+  File tuần có sẵn trang bìa (VD tuần 1) được tự bỏ bìa. Mỗi tuần sang trang bằng "page break before"
+  (không sinh trang trắng); ô gộp "THỨ/BUỔI" vắt qua 2 trang được tách tại chỗ sang trang để có đường kẻ chân.
 - `app.py` giao diện tkinter; xem trước PDF bằng PyMuPDF (chỉ vẽ các trang đang hiển thị).
 
 ## Cấu trúc mã nguồn
