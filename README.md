@@ -100,6 +100,10 @@ Nuitka biên dịch mã Python sang C/mã máy và đóng gói thành một file
 PyInstaller (không còn bytecode Python), dù không có biện pháp nào tuyệt đối. Lần build đầu
 mất 10–30 phút do Nuitka tải trình biên dịch C.
 
+## Thiết kế
+
+Lê Khánh Huy – Zalo: 0938194069
+
 ## Yêu cầu
 
 - Windows 10/11 64-bit

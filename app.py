@@ -20,7 +20,8 @@ from docinfo import guess_month, read_week
 from merger import MergeError, merge, resource_path
 from settings_dialog import SettingsDialog
 
-APP_TITLE = "KHBD Tháng – Ghép giáo án tuần"
+DESIGNER = "Lê Khánh Huy - Zalo: 0938194069"
+APP_TITLE ="KHBD Tháng – Ghép giáo án tuần"
 FILE_TYPES = [("Giáo án Word", "*.docx *.wbk *.docm"), ("Tất cả", "*.*")]
 
 # (khoá settings, placeholder trong mẫu, nhãn, tab)
@@ -303,6 +304,8 @@ class App(tk.Tk):
         self.lbl_status = ttk.Label(left, text="Sẵn sàng. Yêu cầu máy có Microsoft Word.", foreground="#333",
                                     wraplength=420)
         self.lbl_status.pack(fill="x")
+
+        ttk.Label(left, text=f"Thiết kế: {DESIGNER}", foreground="#777").pack(side="bottom", anchor="w")
 
         self.preview_pane = PreviewPane(right)
         self.preview_pane.pack(fill="both", expand=True)

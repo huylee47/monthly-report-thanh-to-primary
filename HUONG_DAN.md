@@ -1,5 +1,7 @@
 # KHBD Tháng – Ghép giáo án tuần thành kế hoạch bài dạy tháng
 
+Thiết kế: **Lê Khánh Huy – Zalo: 0938194069**
+
 ## Dùng phần mềm
 1. Mở `KHBD_Thang.exe` (máy phải cài **Microsoft Word**).
 2. **Thêm file...** → chọn các file giáo án tuần trong tháng (`.docx` hoặc `.wbk`).

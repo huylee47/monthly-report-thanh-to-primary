@@ -13,6 +13,7 @@ python -m nuitka --onefile --assume-yes-for-downloads ^
   --windows-icon-from-ico=icon.ico ^
   --product-name="KHBD Thang" --file-description="Ghep giao an tuan thanh KHBD thang" ^
   --product-version=1.0.0 --file-version=1.0.0 ^
+  --company-name="Le Khanh Huy - Zalo 0938194069" --copyright="Thiet ke: Le Khanh Huy - Zalo 0938194069" ^
   --output-dir=build --output-filename=KHBD_Thang.exe ^
   --remove-output ^
   app.py
