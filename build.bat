@@ -7,6 +7,7 @@ echo === Bien dich KHBD_Thang.exe bang Nuitka (lan dau mat 10-30 phut) ===
 python -m nuitka --onefile --assume-yes-for-downloads ^
   --windows-console-mode=disable ^
   --enable-plugin=tk-inter ^
+  --nofollow-import-to=pymupdf4llm,pymupdf_layout,pymupdf.layout,onnxruntime,pandas,numpy,numba,scipy,sklearn,matplotlib,PIL,IPython,pytest ^
   --include-data-files=template.docx=template.docx ^
   --include-data-files=icon.ico=icon.ico ^
   --windows-icon-from-ico=icon.ico ^
