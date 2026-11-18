@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Build Nuitka
+build/
+build.log
+*.build/
+*.dist/
+*.onefile-build/
+
+# File tạm / sao lưu của Word
+~$*
+*.wbk
+*.tmp
