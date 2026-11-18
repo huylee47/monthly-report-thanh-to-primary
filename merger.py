@@ -289,21 +289,39 @@ def merge(week_paths, values, out_docx, out_pdf=None, progress=None):
         finally:
             tpl.Close(False)
 
-        step("Căn chỉnh bảng báo giảng...")
-        tables = base.Sections(1).Range.Tables   # section 1 = bìa + báo giảng (khổ ngang)
-        for k in range(tables.Count, 0, -1):
-            _split_merged_at_page_breaks(base, tables(k))
-
         step("Điền thông tin...")
         for key, val in values.items():
             _replace_all(base, "{{" + key + "}}", val)
 
         step("Lưu file Word...")
         base.SaveAs2(tmp_out, FileFormat=WD_FORMAT_DOCX, AddToRecentFiles=False)
-        if out_pdf:
-            step("Xuất PDF...")
-            base.ExportAsFixedFormat(out_pdf, WD_EXPORT_PDF)
         base.Close(False)
+
+        # Mở lại file vừa lưu (bố cục trang giống hệt khi người dùng mở bằng Word)
+        # rồi mới tính chỗ sang trang để tách ô gộp của bảng báo giảng.
+        step("Căn chỉnh bảng báo giảng...")
+        # tắt ScreenUpdating làm Word dàn trang/xuất PDF sai (mất viền tiêu đề...) -> bật lại
+        word.ScreenUpdating = True
+        doc = word.Documents.Open(tmp_out, AddToRecentFiles=False, Visible=False)
+        try:
+            doc.Repaginate()
+            tables = doc.Sections(1).Range.Tables   # section 1 = bìa + báo giảng (khổ ngang)
+            for k in range(tables.Count, 0, -1):
+                _split_merged_at_page_breaks(doc, tables(k))
+            doc.Save()
+        finally:
+            doc.Close(False)
+        if out_pdf:
+            # Xuất PDF từ file Word VỪA LƯU (mở lại), không xuất từ bản đang ghép trong bộ nhớ:
+            # bản trong bộ nhớ có bố cục cũ nên PDF thiếu đường kẻ tiêu đề, lệch hình...
+            # Mở lại giống như người dùng mở file .docx -> PDF khớp với Word.
+            step("Xuất PDF...")
+            saved = word.Documents.Open(tmp_out, ReadOnly=True, AddToRecentFiles=False, Visible=False)
+            try:
+                saved.Repaginate()
+                saved.ExportAsFixedFormat(out_pdf, WD_EXPORT_PDF)
+            finally:
+                saved.Close(False)
     except pywintypes.com_error as e:
         detail = ""
         try:
